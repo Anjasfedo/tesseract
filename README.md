@@ -1,4 +1,6 @@
-Welcome to your new TanStack Start app!
+Local OCR — a fully client-side (CSR-only, no server) PDF & image OCR app.
+PDFs are rasterized with pdf.js, then read with Tesseract.js. Files never
+leave the device.
 
 # Getting Started
 
@@ -42,18 +44,17 @@ pnpm check
 ```
 
 
-## Deploy with Nitro
+## Deploy (static, no server)
 
-This project uses Nitro as a generic server adapter, so it can run on any Node-compatible host.
+This project is a pure client-side SPA. `vite build` emits static files
+to `dist/` — serve them from any static host (GitHub Pages, Netlify,
+Cloudflare Pages, Vercel static, nginx, etc.). No Node server needed.
 
 ```bash
-npm run build
-node dist/server/index.mjs
+pnpm build
 ```
 
-The build output is a self-contained Node server. To deploy, push the `dist/` directory to your host (Render, Fly.io, your own VPS, etc.) and run the server command above.
-
-For host-specific presets (Vercel, Netlify, Cloudflare, AWS Lambda, etc.) and tuning, see https://v3.nitro.build/deploy.
+Then serve the `dist/` directory with any static file server.
 
 
 

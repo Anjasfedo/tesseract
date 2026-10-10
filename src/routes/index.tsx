@@ -13,8 +13,6 @@ import {
 
 export const Route = createFileRoute("/")({
 	component: Home,
-	// Fully client-side: never SSR this page (workers / canvas need `window`).
-	ssr: false,
 });
 
 const ACCEPT = "application/pdf,image/png,image/jpeg,image/webp,image/bmp";

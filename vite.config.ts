@@ -1,21 +1,20 @@
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
+import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import viteReact from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
-
+// Pure client-side SPA: no SSR, no Nitro server. `vite build` emits
+// static files (index.html + assets) that can be hosted anywhere.
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
-  plugins: [
-    devtools(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
-    tailwindcss(),
-    tanstackStart(),
-    viteReact(),
-  ],
-})
+	resolve: { tsconfigPaths: true },
+	plugins: [
+		devtools(),
+		TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
+		tailwindcss(),
+		viteReact(),
+	],
+});
 
-export default config
+export default config;
